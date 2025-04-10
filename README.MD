@@ -1,6 +1,6 @@
-# **DocChat - AI-Powered Document Q&A**  
+# **DocGPT - AI for docs**  
 
-DocChat is a MERN stack web app that allows users to upload documents, generate summaries, and interact with them using AI-powered Q&A.  
+DocGPT is a MERN stack web app that allows users to upload documents, generate summaries, and interact with them using AI-powered Q&A.  
 
 ## **Features**  
 ✅ Upload PDF documents  
