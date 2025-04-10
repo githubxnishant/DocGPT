@@ -14,7 +14,7 @@ config({
 const allowedOrigins = ["https://doc-gpt-xi.vercel.app/upload"]
 
 const app = express();
-app.use(cors({ origin: "https://doc-gpt-xi.vercel.app", credentials: true }));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 connectDB();
