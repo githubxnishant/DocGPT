@@ -12,7 +12,7 @@ config({
 });
 
 const app = express();
-app.use(cors({ origin: ["https://gbu-academics.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["https://doc-gpt-xi.vercel.app/"], credentials: true }));
 app.use(express.json());
 
 connectDB();
