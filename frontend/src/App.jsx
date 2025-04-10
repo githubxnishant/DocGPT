@@ -11,7 +11,7 @@ const App = () => {
   const [fileName, setFileName] = useState("");
   const [isDocumentUploaded, setIsDocumentUploaded] = useState(false);
 
-  const BackendURL = "http://localhost:5000";
+  const BackendURL = "https://doc-gpt-nqq4.vercel.app/";
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
