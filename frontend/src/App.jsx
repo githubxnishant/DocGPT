@@ -11,7 +11,7 @@ const App = () => {
   const [fileName, setFileName] = useState("");
   const [isDocumentUploaded, setIsDocumentUploaded] = useState(false);
 
-  const BackendURL = "https://doc-gpt-nqq4.vercel.app";
+  const BackendURL = import.meta.env.VITE_BACKEND_URL;
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
