@@ -4,13 +4,20 @@ import mongoose from "mongoose";
 import multer from "multer";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PDFExtract } from "pdf.js-extract";
-import connectDB from "./db.js";
+// import connectDB from "./db.js";
 
 const app = express();
 app.use(cors({ origin: ["https://doc-gpt-tau.vercel.app", "https://doc-gpt-git-main-nishant-chauhans-projects.vercel.app", "https://doc-gpt-nishant-chauhans-projects.vercel.app"], credentials: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://doc-gpt-tau.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
-connectDB();
+// connectDB();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
