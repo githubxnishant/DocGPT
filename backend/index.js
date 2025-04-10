@@ -1,18 +1,13 @@
 import express from "express";
 import cors from "cors";
-import { config } from "dotenv";
 import mongoose from "mongoose";
 import multer from "multer";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PDFExtract } from "pdf.js-extract";
 import connectDB from "./db.js";
 
-config({
-  path: "./config.env",
-});
-
 const app = express();
-app.use(cors({ origin: ["https://doc-gpt-xi.vercel.app/"], credentials: true }));
+app.use(cors({ origin: ["https://doc-gpt-xi.vercel.app"], credentials: true }));
 app.use(express.json());
 
 connectDB();
