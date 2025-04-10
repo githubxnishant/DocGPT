@@ -7,7 +7,7 @@ import { PDFExtract } from "pdf.js-extract";
 import connectDB from "./db.js";
 
 const app = express();
-app.use(cors({ origin: ["https://doc-gpt-xi.vercel.app"], credentials: true }));
+app.use(cors({ origin: ["https://doc-gpt-tau.vercel.app", "https://doc-gpt-git-main-nishant-chauhans-projects.vercel.app", "https://doc-gpt-nishant-chauhans-projects.vercel.app"], credentials: true }));
 app.use(express.json());
 
 connectDB();
