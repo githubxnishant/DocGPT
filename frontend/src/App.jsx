@@ -11,8 +11,6 @@ const App = () => {
   const [fileName, setFileName] = useState("");
   const [isDocumentUploaded, setIsDocumentUploaded] = useState(false);
 
-  const BackendURL = import.meta.env.VITE_BACKEND_URL;
-
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
@@ -38,7 +36,7 @@ const App = () => {
     formData.append("document", file);
 
     try {
-      const response = await fetch(`${BackendURL}/upload`, {
+      const response = await fetch(`${process.env.VITE_API_URL}/upload`, {
         method: "POST",
         body: formData,
       });
@@ -98,7 +96,7 @@ const App = () => {
     formData.append("question", currentQuestion);
 
     try {
-      const response = await fetch(`${BackendURL}/ask`, {
+      const response = await fetch(`${process.env.VITE_API_URL}/ask`, {
         method: "POST",
         body: formData,
       });
