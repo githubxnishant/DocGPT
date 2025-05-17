@@ -1,13 +1,20 @@
 import express from "express";
 import cors from "cors";
-import mongoose from "mongoose";
+import { config } from "dotenv";
 import multer from "multer";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { PDFExtract } from "pdf.js-extract";
-// import connectDB from "./db.js";
+
+config({
+  path: "\.env",
+})
 
 const app = express();
-app.use(cors({ origin: ["https://doc-gpt-tau.vercel.app", "https://doc-gpt-git-main-nishant-chauhans-projects.vercel.app", "https://doc-gpt-nishant-chauhans-projects.vercel.app"], credentials: true }));
+app.use(cors({ 
+  origin: process.env.FRONTEND_URL, 
+  credentials: true 
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
@@ -16,8 +23,6 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   next();
 });
-
-// connectDB();
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
@@ -47,7 +52,7 @@ app.post("/upload", upload.single("document"), async (req, res) => {
       return res.status(400).json({ error: "No file uploaded" });
     }
     const text = await extractTextFromPDF(req.file.buffer);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const result = await model.generateContent(`Summarize the following text:\n\n${text}`);
     const response = await result.response;
     const summary = response.text();
@@ -68,7 +73,7 @@ app.post("/ask", upload.single("document"), async (req, res) => {
       return res.status(400).json({ error: "No question provided" });
     }
     const text = await extractTextFromPDF(req.file.buffer);
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
     const result = await model.generateContent(`Answer the following question based on the document:\n\nQuestion: ${question}\n\nDocument:\n${text}`);
     const response = await result.response;
     const answer = response.text(); 
